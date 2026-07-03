@@ -11,13 +11,13 @@ use Resellerclub\Config\Environment;
 #[CoversClass(Environment::class)]
 final class EnvironmentTest extends TestCase
 {
-    public function testTestEnvironmentHost(): void
-    {
-        self::assertSame('test.httpapi.com', Environment::Test->host());
-    }
+  public function testTestEnvironmentHost(): void
+  {
+    self::assertSame('test.httpapi.com', Environment::Test->host());
+  }
 
-    public function testProductionEnvironmentHost(): void
-    {
-        self::assertSame('httpapi.com', Environment::Production->host());
-    }
+  public function testProductionEnvironmentHost(): void
+  {
+    self::assertSame('httpapi.com', Environment::Production->host());
+  }
 }

@@ -13,6 +13,6 @@ namespace Resellerclub\Http;
  */
 enum HttpMethod: string
 {
-    case Get = 'GET';
-    case Post = 'POST';
+  case Get = 'GET';
+  case Post = 'POST';
 }

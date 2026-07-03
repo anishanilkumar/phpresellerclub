@@ -22,51 +22,51 @@ use Resellerclub\ResellerClub;
 #[CoversClass(ResellerClub::class)]
 final class ResellerClubTest extends TestCase
 {
-    public function testWiresTheWholeStackTogether(): void
-    {
-        $mock = new MockHandler([
-            new Response(200, [], '{"example.com":{"status":"available"}}'),
-        ]);
-        $guzzle = new GuzzleClient(['handler' => HandlerStack::create($mock)]);
-        $factory = new HttpFactory();
+  public function testWiresTheWholeStackTogether(): void
+  {
+    $mock = new MockHandler([
+      new Response(200, [], '{"example.com":{"status":"available"}}'),
+    ]);
+    $guzzle = new GuzzleClient(['handler' => HandlerStack::create($mock)]);
+    $factory = new HttpFactory();
 
-        $rc = new ResellerClub(
-            new Credentials('12345678', 'apikey', Environment::Test),
-            $guzzle,
-            $factory,
-            $factory,
-        );
+    $rc = new ResellerClub(
+      new Credentials('12345678', 'apikey', Environment::Test),
+      $guzzle,
+      $factory,
+      $factory,
+    );
 
-        $result = $rc->domains()->checkAvailability('example', 'com');
+    $result = $rc->domains()->checkAvailability('example', 'com');
 
-        $request = $mock->getLastRequest();
-        self::assertNotNull($request);
-        self::assertSame('GET', $request->getMethod());
-        self::assertSame(
-            'https://test.httpapi.com/api/domains/available.json'
-            . '?auth-userid=12345678&api-key=apikey&domain-name=example&tlds=com&suggest-alternative=false',
-            (string) $request->getUri(),
-        );
-        self::assertSame(['example.com' => ['status' => 'available']], $result);
-    }
+    $request = $mock->getLastRequest();
+    self::assertNotNull($request);
+    self::assertSame('GET', $request->getMethod());
+    self::assertSame(
+      'https://test.httpapi.com/api/domains/available.json'
+      . '?auth-userid=12345678&api-key=apikey&domain-name=example&tlds=com&suggest-alternative=false',
+      (string) $request->getUri(),
+    );
+    self::assertSame(['example.com' => ['status' => 'available']], $result);
+  }
 
-    public function testAccessorsReturnSharedTypedInstances(): void
-    {
-        $rc = new ResellerClub(new Credentials('12345678', 'apikey'));
+  public function testAccessorsReturnSharedTypedInstances(): void
+  {
+    $rc = new ResellerClub(new Credentials('12345678', 'apikey'));
 
-        self::assertInstanceOf(Domain::class, $rc->domains());
-        self::assertInstanceOf(Contact::class, $rc->contacts());
-        self::assertInstanceOf(Customer::class, $rc->customers());
-        self::assertInstanceOf(Billing::class, $rc->billing());
+    self::assertInstanceOf(Domain::class, $rc->domains());
+    self::assertInstanceOf(Contact::class, $rc->contacts());
+    self::assertInstanceOf(Customer::class, $rc->customers());
+    self::assertInstanceOf(Billing::class, $rc->billing());
 
-        // Accessors are memoised.
-        self::assertSame($rc->domains(), $rc->domains());
-    }
+    // Accessors are memoised.
+    self::assertSame($rc->domains(), $rc->domains());
+  }
 
-    public function testCanBeConstructedWithoutAnHttpClient(): void
-    {
-        $rc = new ResellerClub(new Credentials('12345678', 'apikey'));
+  public function testCanBeConstructedWithoutAnHttpClient(): void
+  {
+    $rc = new ResellerClub(new Credentials('12345678', 'apikey'));
 
-        self::assertInstanceOf(Domain::class, $rc->domains());
-    }
+    self::assertInstanceOf(Domain::class, $rc->domains());
+  }
 }

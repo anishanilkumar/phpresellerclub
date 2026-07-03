@@ -16,24 +16,24 @@ use Resellerclub\Validation\Validator;
  */
 abstract class AbstractApi
 {
-    public function __construct(
-        protected readonly ApiClient $client,
-        protected readonly Validator $validator,
-    ) {
-    }
+  public function __construct(
+    protected readonly ApiClient $client,
+    protected readonly Validator $validator,
+  ) {
+  }
 
-    /**
-     * Validate (optionally) and dispatch an API call.
-     *
-     * @param array<string, mixed> $parameters
-     */
-    protected function call(
-        HttpMethod $method,
-        string $section,
-        string $apiName,
-        array $parameters = [],
-        ?string $section2 = null,
-    ): mixed {
-        return $this->client->send($method, $section, $apiName, $parameters, $section2);
-    }
+  /**
+   * Validate (optionally) and dispatch an API call.
+   *
+   * @param array<string, mixed> $parameters
+   */
+  protected function call(
+    HttpMethod $method,
+    string $section,
+    string $apiName,
+    array $parameters = [],
+    ?string $section2 = null,
+  ): mixed {
+    return $this->client->send($method, $section, $apiName, $parameters, $section2);
+  }
 }

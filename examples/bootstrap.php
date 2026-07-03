@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Shared bootstrap for the example scripts.
  *
@@ -14,20 +12,21 @@ declare(strict_types=1);
  * to hit the live API.
  */
 
-require __DIR__ . '/../vendor/autoload.php';
+declare(strict_types=1);
 
 use Resellerclub\Config\Credentials;
 use Resellerclub\Config\Environment;
 use Resellerclub\ResellerClub;
 
-$environment = getenv('RESELLER_ENV') === 'production'
-    ? Environment::Production
-    : Environment::Test;
+require __DIR__ . '/../vendor/autoload.php';
+
+$isProduction = getenv('RESELLER_ENV') === 'production';
+$environment = $isProduction ? Environment::Production : Environment::Test;
 
 return new ResellerClub(
-    new Credentials(
-        (string) (getenv('RESELLER_ID') ?: '0000000'),
-        (string) (getenv('RESELLER_API_KEY') ?: 'your-api-key'),
-        $environment,
-    )
+  new Credentials(
+    (string) (getenv('RESELLER_ID') ?: '0000000'),
+    (string) (getenv('RESELLER_API_KEY') ?: 'your-api-key'),
+    $environment,
+  )
 );

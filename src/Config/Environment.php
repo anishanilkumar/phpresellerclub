@@ -11,17 +11,17 @@ namespace Resellerclub\Config;
  */
 enum Environment: string
 {
-    /** Test / OT&E environment — use this while developing. */
-    case Test = 'test.httpapi.com';
+  /** Test / OT&E environment — use this while developing. */
+  case Test = 'test.httpapi.com';
 
-    /** Live environment — real orders and real money. */
-    case Production = 'httpapi.com';
+  /** Live environment — real orders and real money. */
+  case Production = 'httpapi.com';
 
-    /**
-     * The host name used to build the API base URL.
-     */
-    public function host(): string
-    {
-        return $this->value;
-    }
+  /**
+   * The host name used to build the API base URL.
+   */
+  public function host(): string
+  {
+    return $this->value;
+  }
 }
