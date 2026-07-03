@@ -10,14 +10,11 @@ exclude_patterns = [
   "examples/**",
 ]
 
+[[source]]
+name = "default"
+default = true
+
+# phpstan runs in CI (it needs the project's Composer dependencies to resolve
+# types); here we enable only phpcs, whose sniffs are self-contained.
 [[plugin]]
-name = "phpstan"
-
-[[plugin]]
-name = "php-cs-fixer"
-
-[smells]
-mode = "comment"
-
-[smells.duplication]
-threshold = 40
+name = "php-codesniffer"
