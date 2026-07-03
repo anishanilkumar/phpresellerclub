@@ -103,9 +103,18 @@ See the [`examples/`](examples/) directory for runnable scripts.
 composer install
 composer test        # PHPUnit + coverage
 composer phpstan     # static analysis (level max)
-composer cs:check    # coding standard (PSR-12)
+composer cs:check    # coding standard (phpcs: PSR-12, two-space indent)
 composer check       # all of the above
 ```
+
+## Security
+
+Found a vulnerability? Please report it privately — see [SECURITY.md](SECURITY.md)
+for how to report and what to expect. Do not open a public issue.
+
+When using the library, load your `Credentials` from environment variables or a
+secrets manager (never commit API keys), and keep TLS verification enabled on
+any HTTP client you inject.
 
 ## License
 
