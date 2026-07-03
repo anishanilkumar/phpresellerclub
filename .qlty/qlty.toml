@@ -1,0 +1,23 @@
+# Qlty configuration — https://docs.qlty.sh
+# Replaces the deprecated classic Code Climate (.codeclimate.yml).
+config_version = "0"
+
+exclude_patterns = [
+  "vendor/**",
+  "tests/**",
+  "build/**",
+  "docs/**",
+  "examples/**",
+]
+
+[[plugin]]
+name = "phpstan"
+
+[[plugin]]
+name = "php-cs-fixer"
+
+[smells]
+mode = "comment"
+
+[smells.duplication]
+threshold = 40

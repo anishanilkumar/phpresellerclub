@@ -1,3 +1,7 @@
+/vendor/
+/build/
 /nbproject/
-/vendor
-/build
+/.phpunit.cache/
+/.php-cs-fixer.cache
+/rc-config.php
+composer.lock

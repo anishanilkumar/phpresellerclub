@@ -1,11 +1,12 @@
 <?php
 
-require '../src/index.php';
+declare(strict_types=1);
 
-$domain = new \Resellerclub\Domain;
+/** @var \Resellerclub\ResellerClub $client */
+$client = require __DIR__ . '/bootstrap.php';
 
-// According to http://cp.onlyfordemo.net/kb/answer/1085 , us and cc 2nd and
-// 3rd level is supported.
-$apiOut = $domain->domainSuggestions('resellerclub', 'us');
+// Per https://manage.resellerclub.com/kb/answer/1085 , 2nd and 3rd level TLDs
+// such as us and cc are supported.
+$apiOut = $client->domains()->domainSuggestions('resellerclub', 'us');
 
 var_dump($apiOut);

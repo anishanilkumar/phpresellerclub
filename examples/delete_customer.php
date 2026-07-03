@@ -1,11 +1,12 @@
 <?php
 
-require '../src/index.php';
+declare(strict_types=1);
 
-$customer = new \Resellerclub\Customer;
+/** @var \Resellerclub\ResellerClub $client */
+$client = require __DIR__ . '/bootstrap.php';
 
 $customerId = '13620823';
 
-$apiOut = $customer->deleteCustomer($customerId);
+$apiOut = $client->customers()->deleteCustomer($customerId);
 
 var_dump($apiOut);
