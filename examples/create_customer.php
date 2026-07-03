@@ -1,10 +1,11 @@
 <?php
 
-require '../src/index.php';
+declare(strict_types=1);
 
-$customer = new \Resellerclub\Customer;
+/** @var \Resellerclub\ResellerClub $client */
+$client = require __DIR__ . '/bootstrap.php';
 
-$customerDetails = array(
+$apiOut = $client->customers()->createCustomer([
   'username' => 'newmail@example.com',
   'passwd' => 'r@ndomP@sswd',
   'name' => 'Jane Doe',
@@ -17,8 +18,6 @@ $customerDetails = array(
   'phone-cc' => '91',
   'phone' => '9876543210',
   'lang-pref' => 'en',
-);
-
-$apiOut = $customer->createCustomer($customerDetails);
+]);
 
 var_dump($apiOut);

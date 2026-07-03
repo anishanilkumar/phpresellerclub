@@ -1,11 +1,12 @@
 <?php
 
-require '../src/index.php';
+declare(strict_types=1);
 
-$domain = new \Resellerclub\Domain;
+/** @var \Resellerclub\ResellerClub $client */
+$client = require __DIR__ . '/bootstrap.php';
 
-$orderId = '12345678';
+$orderId = 12345678;
 
-$apiOut = $domain->setNameServer($orderId, array('ns1.example.com, ns2.example.com'));
+$apiOut = $client->domains()->setNameServer($orderId, ['ns1.example.com', 'ns2.example.com']);
 
 var_dump($apiOut);

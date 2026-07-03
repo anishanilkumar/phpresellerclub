@@ -1,10 +1,11 @@
 <?php
 
-require '../src/index.php';
+declare(strict_types=1);
 
-$contact = new \Resellerclub\Contact;
+/** @var \Resellerclub\ResellerClub $client */
+$client = require __DIR__ . '/bootstrap.php';
 
-$contactDetails = array(
+$apiOut = $client->contacts()->createContact([
   'name' => 'Anish Sheela',
   'company' => 'N/A',
   'email' => 'anishsheela@outlook.com',
@@ -16,8 +17,6 @@ $contactDetails = array(
   'phone' => '9876543210',
   'customer-id' => '13647145',
   'type' => 'Contact',
-);
-
-$apiOut = $contact->createContact($contactDetails);
+]);
 
 var_dump($apiOut);

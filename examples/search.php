@@ -1,9 +1,10 @@
 <?php
 
-require '../src/index.php';
+declare(strict_types=1);
 
-$domain = new \Resellerclub\Domain;
+/** @var \Resellerclub\ResellerClub $client */
+$client = require __DIR__ . '/bootstrap.php';
 
-$apiOut = $domain->checkAvailability('resellerclub', 'com', TRUE);
+$apiOut = $client->domains()->checkAvailability('resellerclub', 'com', true);
 
 var_dump($apiOut);

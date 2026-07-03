@@ -1,0 +1,20 @@
+# Qlty configuration — https://docs.qlty.sh
+# Replaces the deprecated classic Code Climate (.codeclimate.yml).
+config_version = "0"
+
+exclude_patterns = [
+  "vendor/**",
+  "tests/**",
+  "build/**",
+  "docs/**",
+  "examples/**",
+]
+
+[[source]]
+name = "default"
+default = true
+
+# phpstan runs in CI (it needs the project's Composer dependencies to resolve
+# types); here we enable only phpcs, whose sniffs are self-contained.
+[[plugin]]
+name = "php-codesniffer"

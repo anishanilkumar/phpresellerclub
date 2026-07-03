@@ -1,10 +1,13 @@
 <?php
 
-require '../src/index.php';
+declare(strict_types=1);
 
-$customer = new \Resellerclub\Customer;
+/** @var \Resellerclub\ResellerClub $client */
+$client = require __DIR__ . '/bootstrap.php';
 
-$customerDetails = array(
+$customerId = '13620823';
+
+$apiOut = $client->customers()->editCustomer($customerId, [
   'username' => 'random@example.com',
   'passwd' => 'Rand124',
   'name' => 'John Doe',
@@ -17,15 +20,6 @@ $customerDetails = array(
   'phone-cc' => '91',
   'phone' => '9876543210',
   'lang-pref' => 'en',
-);
+]);
 
-$customerId = '13620823';
-
-$apiOut = $customer->editCustomer($customerId, $customerDetails);
-
-if(TRUE === $apiOut) {
-  echo "Success";
-} else {
-  echo "Failed";
-}
-
+var_dump($apiOut);

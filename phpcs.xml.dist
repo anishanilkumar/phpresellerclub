@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<ruleset name="phpresellerclub">
+  <description>PSR-12 style with two-space indentation.</description>
+
+  <file>src</file>
+  <file>tests</file>
+  <file>examples</file>
+
+  <arg name="colors"/>
+  <arg name="tab-width" value="2"/>
+  <arg value="sp"/>
+
+  <!--
+    PSR-12 as the base. The sniffs below hardcode four-space indentation for
+    multiline calls/declarations, so their indent checks are disabled; scope
+    indentation is enforced at two spaces via ScopeIndent instead.
+  -->
+  <rule ref="PSR12">
+    <exclude name="PSR2.Methods.FunctionCallSignature.Indent"/>
+    <exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
+    <exclude name="PEAR.Functions.FunctionCallSignature.OpeningIndent"/>
+    <exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+    <exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.Indent"/>
+    <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BracketIndent"/>
+  </rule>
+
+  <!-- Enforce exactly two-space, space-based scope indentation. -->
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="indent" value="2"/>
+      <property name="exact" value="true"/>
+      <property name="tabIndent" value="false"/>
+    </properties>
+  </rule>
+</ruleset>
